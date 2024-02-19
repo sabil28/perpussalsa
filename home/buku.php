@@ -58,7 +58,8 @@ if (!isset($_SESSION["login_type"])) {
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
                     <li class="dropdown dropdown-notification">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span class="notify-signal"></span></i></a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span
+                                    class="notify-signal"></span></i></a>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
                             <li class="dropdown-menu-header">
                                 <div>
@@ -76,7 +77,8 @@ if (!isset($_SESSION["login_type"])) {
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <img src="./assets/img/admin-avatar.png" />
-                            <span></span><?php echo $_SESSION['nama_admin']; ?><i class="fa fa-angle-down m-l-5"></i></a>
+                            <span></span><?php echo $_SESSION['nama_admin']; ?><i
+                                class="fa fa-angle-down m-l-5"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="keluar.php"><i class="fa fa-power-off"></i>Logout</a>
                         </ul>
@@ -104,10 +106,12 @@ if (!isset($_SESSION["login_type"])) {
                 <div class="ibox">
                     <div class="ibox-head">
                         <div class="ibox-title">Data Buku</div>
-                        <a class="btn btn-sm btn-primary" href="" data-toggle="modal" data-target="#bukuModal"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <a class="btn btn-sm btn-primary" href="" data-toggle="modal" data-target="#bukuModal"><i
+                                class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                     <div class="ibox-body">
-                        <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+                        <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0"
+                            width="100%">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -138,12 +142,20 @@ if (!isset($_SESSION["login_type"])) {
                                     <td><?php echo $row['nama_kategori']; ?></td>
                                     <td style="text-align: justify;"><?php echo $row['deskripsi_buku']; ?></td>
                                     <td style="text-align: center;">
-                                        <img src="buku/<?php echo $row['gambar_sampul']; ?>" alt="Gambar Sampul" title="<?php echo $row['judul_buku']; ?>" width="50px" height="50px">
+                                        <img src="buku/<?php echo $row['gambar_sampul']; ?>" alt="Gambar Sampul"
+                                            title="<?php echo $row['judul_buku']; ?>" width="50px" height="50px">
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-warning" href="" data-toggle="modal" data-toggle="modal" data-target="#bukueditModal<?php echo $row['id_buku']; ?>"><i class="fa fa-cog"></i></a><br><br>
-                                        <a class="btn btn-sm btn-primary" href="" data-toggle="modal" data-target="#bukudetailModal<?php echo $row['id_buku']; ?>"><i class="fa fa-eye"></i></a><br><br>
-                                        <a class="btn btn-sm btn-danger" href="hapus_buku.php?id_buku=<?php echo $row['id_buku']; ?>"><i class="fa fa-trash"></i></a>
+                                        <a class="btn btn-sm btn-warning" href="" data-toggle="modal"
+                                            data-toggle="modal"
+                                            data-target="#bukueditModal<?php echo $row['id_buku']; ?>"><i
+                                                class="fa fa-cog"></i></a><br><br>
+                                        <a class="btn btn-sm btn-primary" href="" data-toggle="modal"
+                                            data-target="#bukudetailModal<?php echo $row['id_buku']; ?>"><i
+                                                class="fa fa-eye"></i></a><br><br>
+                                        <a class="btn btn-sm btn-danger"
+                                            href="hapus_buku.php?id_buku=<?php echo $row['id_buku']; ?>"><i
+                                                class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 <?php } ?>
@@ -154,7 +166,8 @@ if (!isset($_SESSION["login_type"])) {
             </div>
 
             <!-- Modal Tambah -->
-            <div class="modal fade" id="bukuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="bukuModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -215,13 +228,15 @@ if (!isset($_SESSION["login_type"])) {
                                             $k = mysqli_query($koneksi,"SELECT * FROM tb_kategori");
                                             while ($rowk = mysqli_fetch_assoc($k)){
                                             ?>
-                                            <option value="<?php echo $rowk['id_kategori']; ?>"><?php echo $rowk['nama_kategori']; ?>
-                                            <?php } ?>
+                                            <option value="<?php echo $rowk['id_kategori']; ?>">
+                                                <?php echo $rowk['nama_kategori']; ?>
+                                                <?php } ?>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="deskripsiBuku">Deskripsi Buku</label>
-                                        <textarea class="form-control" id="deskripsiBuku" name="deskripsi" rows="3"></textarea>
+                                        <textarea class="form-control" id="deskripsiBuku" name="deskripsi"
+                                            rows="3"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="gambarBuku">Upload Gambar Buku</label>
@@ -245,7 +260,8 @@ if (!isset($_SESSION["login_type"])) {
             while ($rowb = mysqli_fetch_assoc($resultb)){
                 $tahun_terbit = $rowb['tahun_terbit'];
             ?>
-            <div class="modal fade" id="bukueditModal<?php echo $rowb['id_buku']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="bukueditModal<?php echo $rowb['id_buku']; ?>" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -261,15 +277,18 @@ if (!isset($_SESSION["login_type"])) {
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="judulBuku">Judul Buku</label>
-                                        <input type="text" class="form-control" id="judulBuku" name="judul" value="<?php echo $rowb['judul_buku']; ?>">
+                                        <input type="text" class="form-control" id="judulBuku" name="judul"
+                                            value="<?php echo $rowb['judul_buku']; ?>">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="pengarang">Pengarang</label>
-                                        <input type="text" class="form-control" id="pengarang" name="pengarang" value="<?php echo $rowb['pengarang']; ?>">
+                                        <input type="text" class="form-control" id="pengarang" name="pengarang"
+                                            value="<?php echo $rowb['pengarang']; ?>">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="penerbit">Penerbit</label>
-                                        <input type="text" class="form-control" id="penerbit" name="penerbit" value="<?php echo $rowb['penerbit']; ?>">
+                                        <input type="text" class="form-control" id="penerbit" name="penerbit"
+                                            value="<?php echo $rowb['penerbit']; ?>">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="tahunTerbit">Tahun Terbit</label>
@@ -286,7 +305,8 @@ if (!isset($_SESSION["login_type"])) {
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="isbn">ISBN</label>
-                                        <input type="text" class="form-control" id="isbn" name="isbn" value="<?php echo $rowb['isbn']; ?>">
+                                        <input type="text" class="form-control" id="isbn" name="isbn"
+                                            value="<?php echo $rowb['isbn']; ?>">
                                     </div>
                                 </div>
 
@@ -294,11 +314,13 @@ if (!isset($_SESSION["login_type"])) {
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
                                         <label for="jumlahBuku">Jumlah Buku</label>
-                                        <input type="text" class="form-control" id="jumlahBuku" name="jumbuku" value="<?php echo $rowb['jumlah_buku']; ?>">
+                                        <input type="text" class="form-control" id="jumlahBuku" name="jumbuku"
+                                            value="<?php echo $rowb['jumlah_buku']; ?>">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="jumlahSalinan">Jumlah Salinan</label>
-                                        <input type="text" class="form-control" id="jumlahSalinan" name="jumsalin" value="<?php echo $rowb['jumlah_salinan']; ?>">
+                                        <input type="text" class="form-control" id="jumlahSalinan" name="jumsalin"
+                                            value="<?php echo $rowb['jumlah_salinan']; ?>">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="kategoriBuku">Kategori Buku</label>
@@ -308,19 +330,24 @@ if (!isset($_SESSION["login_type"])) {
                                             $k = mysqli_query($koneksi,"SELECT * FROM tb_kategori");
                                             while ($rowk = mysqli_fetch_assoc($k)){
                                             ?>
-                                            <option <?php if($rowk['id_kategori'] == $rowb['kategori_buku']){echo "selected='selected'";} ?> value="<?php echo $rowk['id_kategori']; ?>"><?php echo $rowk['nama_kategori']; ?>
-                                            <?php } ?>
+                                            <option
+                                                <?php if($rowk['id_kategori'] == $rowb['kategori_buku']){echo "selected='selected'";} ?>
+                                                value="<?php echo $rowk['id_kategori']; ?>">
+                                                <?php echo $rowk['nama_kategori']; ?>
+                                                <?php } ?>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="deskripsiBuku">Deskripsi Buku</label>
-                                        <textarea class="form-control" id="deskripsiBuku" name="deskripsi" rows="3"><?php echo $rowb['deskripsi_buku']; ?></textarea>
+                                        <textarea class="form-control" id="deskripsiBuku" name="deskripsi"
+                                            rows="3"><?php echo $rowb['deskripsi_buku']; ?></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="gambarBuku">Upload Gambar Buku</label>
                                         <input type="file" class="form-control" id="gambarBuku" name="gambar">
                                         <br>
-                                        <img src="buku/<?php echo $rowb['gambar_sampul']; ?>" width="60px" height="60px">
+                                        <img src="buku/<?php echo $rowb['gambar_sampul']; ?>" width="60px"
+                                            height="60px">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -340,7 +367,8 @@ if (!isset($_SESSION["login_type"])) {
             $resultb = mysqli_query($koneksi,$datab);
             while ($rowb = mysqli_fetch_assoc($resultb)){
             ?>
-            <div class="modal fade" id="bukudetailModal<?php echo $rowb['id_buku']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="bukudetailModal<?php echo $rowb['id_buku']; ?>" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -350,7 +378,8 @@ if (!isset($_SESSION["login_type"])) {
                             </button>
                         </div>
                         <div class="modal-body">
-                            <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+                            <table class="table table-striped table-bordered table-hover" id="example-table"
+                                cellspacing="0" width="100%">
                                 <tbody>
                                     <tr>
                                         <th>Judul Buku</th>
@@ -401,7 +430,8 @@ if (!isset($_SESSION["login_type"])) {
                                         <th>Gambar Buku</th>
                                         <th>:</th>
                                         <td>
-                                            <img src="buku/<?php echo $rowb['gambar_sampul']; ?>" width="60px" height="60px">
+                                            <img src="buku/<?php echo $rowb['gambar_sampul']; ?>" width="60px"
+                                                height="60px">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -416,15 +446,18 @@ if (!isset($_SESSION["login_type"])) {
             <?php } ?>
             <!-- END PAGE CONTENT-->
             <footer class="page-footer">
-                <div class="font-13">2023 © <b>AANDANU</b> - All rights reserved.</div>
-                <a class="px-4" href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589" target="_blank">BUY PREMIUM</a>
+                <div class="font-13">2024 © <b>SALSABILA</b> - All rights reserved.</div>
+                <a class="px-4"
+                    href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589"
+                    target="_blank">BUY PREMIUM</a>
                 <div class="to-top"><i class="fa fa-angle-double-up"></i></div>
             </footer>
         </div>
     </div>
     <!-- BEGIN THEME CONFIG PANEL-->
     <div class="theme-config">
-        <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i class="ti-close theme-config-close"></i></div>
+        <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i
+                class="ti-close theme-config-close"></i></div>
         <div class="theme-config-box">
             <div class="text-center font-18 m-b-20">SETTINGS</div>
             <div class="font-strong">LAYOUT OPTIONS</div>
@@ -570,35 +603,35 @@ if (!isset($_SESSION["login_type"])) {
     <script src="assets/js/app.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
     <script type="text/javascript">
-        $(function() {
-            $('#example-table').DataTable({
-                pageLength: 10,
-                //"ajax": './assets/demo/data/table_data.json',
-                /*"columns": [
-                    { "data": "name" },
-                    { "data": "office" },
-                    { "data": "extn" },
-                    { "data": "start_date" },
-                    { "data": "salary" }
-                ]*/
-            });
-        })
+    $(function() {
+        $('#example-table').DataTable({
+            pageLength: 10,
+            //"ajax": './assets/demo/data/table_data.json',
+            /*"columns": [
+                { "data": "name" },
+                { "data": "office" },
+                { "data": "extn" },
+                { "data": "start_date" },
+                { "data": "salary" }
+            ]*/
+        });
+    })
     </script>
 
     <script>
-        var inactivityTimeout; // Timeout untuk aktivitas
+    var inactivityTimeout; // Timeout untuk aktivitas
 
-        // Fungsi untuk mereset timeout
-        function resetInactivityTimeout() {
-            clearTimeout(inactivityTimeout);
-            inactivityTimeout = setTimeout(function() {
-                window.location.href = "lockscreen.php";
-            }, 200000); // Mengarahkan ke lockscreen.php setelah 10 detik tidak ada aktivitas
-        }
+    // Fungsi untuk mereset timeout
+    function resetInactivityTimeout() {
+        clearTimeout(inactivityTimeout);
+        inactivityTimeout = setTimeout(function() {
+            window.location.href = "lockscreen.php";
+        }, 200000); // Mengarahkan ke lockscreen.php setelah 10 detik tidak ada aktivitas
+    }
 
-        // Menambahkan event listener untuk mendeteksi aktivitas
-        document.addEventListener("mousemove", resetInactivityTimeout);
-        document.addEventListener("keydown", resetInactivityTimeout);
+    // Menambahkan event listener untuk mendeteksi aktivitas
+    document.addEventListener("mousemove", resetInactivityTimeout);
+    document.addEventListener("keydown", resetInactivityTimeout);
     </script>
 </body>
 

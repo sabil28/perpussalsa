@@ -61,7 +61,7 @@ CREATE TABLE `tb_admin` (
 --
 
 INSERT INTO `tb_admin` (`id_admin`, `username`, `password`, `nama_lengkap`, `alamat`, `nomor_hp`, `hak_akses`, `foto`) VALUES
-(4, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'AANDANU', 'Empat Negeri', '+6282361676990', 'admin', 'admin/admin-avatar.png'),
+(4, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'SALSA', 'Empat Negeri', '+6282361676990', 'admin', 'admin/admin-avatar.png'),
 (6, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'USER', 'Empat Negeri', '+6283877654098', 'user', 'admin/u6.jpg');
 
 -- --------------------------------------------------------

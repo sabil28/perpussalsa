@@ -60,7 +60,8 @@ $id = $_SESSION['id_admin'];
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
                     <li class="dropdown dropdown-notification">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span class="notify-signal"></span></i></a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span
+                                    class="notify-signal"></span></i></a>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
                             <li class="dropdown-menu-header">
                                 <div>
@@ -82,7 +83,8 @@ $id = $_SESSION['id_admin'];
                             $row = mysqli_fetch_assoc($result);
                             ?>
                             <img src="<?php echo $row['foto']; ?>" />
-                            <span></span><?php echo $_SESSION['nama_admin']; ?><i class="fa fa-angle-down m-l-5"></i></a>
+                            <span></span><?php echo $_SESSION['nama_admin']; ?><i
+                                class="fa fa-angle-down m-l-5"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="keluar.php"><i class="fa fa-power-off"></i>Logout</a>
                         </ul>
@@ -107,7 +109,8 @@ $id = $_SESSION['id_admin'];
                             ?>
                             <div class="ibox-body">
                                 <h2 class="m-b-5 font-strong"><?php echo $rp['total']; ?></h2>
-                                <div class="m-b-5">NEW PEMINJAMAN</div><i class="fa fa-sticky-note widget-stat-icon"></i>
+                                <div class="m-b-5">NEW PEMINJAMAN</div><i
+                                    class="fa fa-sticky-note widget-stat-icon"></i>
                             </div>
                         </div>
                     </div>
@@ -150,32 +153,35 @@ $id = $_SESSION['id_admin'];
                 </div>
                 <?php include 'notifikasi.php'; ?>
                 <style>
-                    .visitors-table tbody tr td:last-child {
-                        display: flex;
-                        align-items: center;
-                    }
+                .visitors-table tbody tr td:last-child {
+                    display: flex;
+                    align-items: center;
+                }
 
-                    .visitors-table .progress {
-                        flex: 1;
-                    }
+                .visitors-table .progress {
+                    flex: 1;
+                }
 
-                    .visitors-table .progress-parcent {
-                        text-align: right;
-                        margin-left: 10px;
-                    }
+                .visitors-table .progress-parcent {
+                    text-align: right;
+                    margin-left: 10px;
+                }
                 </style>
             </div>
             <!-- END PAGE CONTENT-->
             <footer class="page-footer">
-                <div class="font-13">2023 © <b>AANDANU</b> - All rights reserved.</div>
-                <a class="px-4" href="" target="_blank">Peminjaman Buku</a>
+                <div class="font-13">2024 © <b>SALSABILA</b> - All rights reserved.</div>
+                <a class="px-4"
+                    href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589"
+                    target="_blank">BUY PREMIUM</a>
                 <div class="to-top"><i class="fa fa-angle-double-up"></i></div>
             </footer>
         </div>
     </div>
     <!-- BEGIN THEME CONFIG PANEL-->
     <div class="theme-config">
-        <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i class="ti-close theme-config-close"></i></div>
+        <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i
+                class="ti-close theme-config-close"></i></div>
         <div class="theme-config-box">
             <div class="text-center font-18 m-b-20">SETTINGS</div>
             <div class="font-strong">LAYOUT OPTIONS</div>
@@ -326,19 +332,19 @@ $id = $_SESSION['id_admin'];
     <script src="./assets/js/scripts/dashboard_1_demo.js" type="text/javascript"></script>
 
     <script>
-        var inactivityTimeout; // Timeout untuk aktivitas
+    var inactivityTimeout; // Timeout untuk aktivitas
 
-        // Fungsi untuk mereset timeout
-        function resetInactivityTimeout() {
-            clearTimeout(inactivityTimeout);
-            inactivityTimeout = setTimeout(function() {
-                window.location.href = "lockscreen.php";
-            }, 200000); // Mengarahkan ke lockscreen.php setelah 10 menit (600000 ms) tidak ada aktivitas
-        }
+    // Fungsi untuk mereset timeout
+    function resetInactivityTimeout() {
+        clearTimeout(inactivityTimeout);
+        inactivityTimeout = setTimeout(function() {
+            window.location.href = "lockscreen.php";
+        }, 200000); // Mengarahkan ke lockscreen.php setelah 10 menit (600000 ms) tidak ada aktivitas
+    }
 
-        // Menambahkan event listener untuk mendeteksi aktivitas
-        document.addEventListener("mousemove", resetInactivityTimeout);
-        document.addEventListener("keydown", resetInactivityTimeout);
+    // Menambahkan event listener untuk mendeteksi aktivitas
+    document.addEventListener("mousemove", resetInactivityTimeout);
+    document.addEventListener("keydown", resetInactivityTimeout);
     </script>
 </body>
 

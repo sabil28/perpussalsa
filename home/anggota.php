@@ -58,7 +58,8 @@ if (!isset($_SESSION["login_type"])) {
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
                     <li class="dropdown dropdown-notification">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span class="notify-signal"></span></i></a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span
+                                    class="notify-signal"></span></i></a>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
                             <li class="dropdown-menu-header">
                                 <div>
@@ -104,10 +105,12 @@ if (!isset($_SESSION["login_type"])) {
                 <div class="ibox">
                     <div class="ibox-head">
                         <div class="ibox-title">Data Anggota</div>
-                        <a class="btn btn-sm btn-primary" href="" data-toggle="modal" data-target="#anggotaModal"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <a class="btn btn-sm btn-primary" href="" data-toggle="modal" data-target="#anggotaModal"><i
+                                class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                     <div class="ibox-body">
-                        <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+                        <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0"
+                            width="100%">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -137,8 +140,12 @@ if (!isset($_SESSION["login_type"])) {
                                     <td><?php echo $row['email']; ?></td>
                                     <td><?php echo $row['tgl_bergabung']; ?></td>
                                     <td>
-                                        <a class="btn btn-sm btn-warning" href="" data-toggle="modal" data-target="#anggotaeditModal<?php echo $row['id_anggota']; ?>"><i class="fa fa-cog"></i></a>
-                                        <a class="btn btn-sm btn-danger" href="hapus_anggota.php?id=<?php echo $row['id_anggota']; ?>"><i class="fa fa-trash"></i></a>
+                                        <a class="btn btn-sm btn-warning" href="" data-toggle="modal"
+                                            data-target="#anggotaeditModal<?php echo $row['id_anggota']; ?>"><i
+                                                class="fa fa-cog"></i></a>
+                                        <a class="btn btn-sm btn-danger"
+                                            href="hapus_anggota.php?id=<?php echo $row['id_anggota']; ?>"><i
+                                                class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 <?php } ?>
@@ -149,7 +156,8 @@ if (!isset($_SESSION["login_type"])) {
             </div>
 
             <!-- Modal Tambah -->
-            <div class="modal fade" id="anggotaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="anggotaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -162,27 +170,43 @@ if (!isset($_SESSION["login_type"])) {
                             <form method="POST" action="proses_anggota.php">
                                 <div class="form-group">
                                     <label for="nama">Nama Anggota</label>
-                                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Anggota">
+                                    <input type="text" class="form-control" id="nama" name="nama"
+                                        placeholder="Nama Anggota">
                                 </div>
                                 <div class="form-group">
                                     <label for="nis">NIS Anggota</label>
-                                    <input type="text" class="form-control" id="nis" name="nis" placeholder="NIS Anggota">
+                                    <input type="text" class="form-control" id="nis" name="nis"
+                                        placeholder="NIS Anggota">
                                 </div>
                                 <div class="form-group">
                                     <label for="alamat">Alamat Anggota</label>
-                                    <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat Anggota">
+                                    <input type="text" class="form-control" id="alamat" name="alamat"
+                                        placeholder="Alamat Anggota">
                                 </div>
                                 <div class="form-group">
                                     <label for="nomorhp">Nomor HP Anggota</label>
-                                    <input type="text" class="form-control" id="nomorhp" name="nomorhp" placeholder="Nomor HP Anggota">
+                                    <input type="text" class="form-control" id="nomorhp" name="nomorhp"
+                                        placeholder="Nomor HP Anggota">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email Anggota</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Anggota">
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        placeholder="Email Anggota">
                                 </div>
                                 <div class="form-group">
                                     <label for="tanggal">Tanggal Bergabung Anggota</label>
-                                    <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal Bergabung Anggota">
+                                    <input type="date" class="form-control" id="tanggal" name="tanggal"
+                                        placeholder="Tanggal Bergabung Anggota">
+                                </div>
+                                <div class="form-group">
+                                    <label for="tanggal">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password">
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="tanggal">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username">
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -200,7 +224,8 @@ if (!isset($_SESSION["login_type"])) {
             $result = mysqli_query($koneksi,$dataA);
             while($rowA = mysqli_fetch_assoc($result)){
             ?>
-            <div class="modal fade" id="anggotaeditModal<?php echo $rowA['id_anggota']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="anggotaeditModal<?php echo $rowA['id_anggota']; ?>" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -214,27 +239,43 @@ if (!isset($_SESSION["login_type"])) {
                                 <input type="hidden" name="id_anggota" value="<?php echo $rowA['id_anggota']; ?>">
                                 <div class="form-group">
                                     <label for="nama">Nama Anggota</label>
-                                    <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $rowA['nama_anggota']; ?>" placeholder="Nama Anggota">
+                                    <input type="text" class="form-control" id="nama" name="nama"
+                                        value="<?php echo $rowA['nama_anggota']; ?>" placeholder="Nama Anggota">
                                 </div>
                                 <div class="form-group">
                                     <label for="nis">NIS Anggota</label>
-                                    <input type="text" class="form-control" id="nis" name="nis" value="<?php echo $rowA['nis']; ?>" placeholder="NIS Anggota">
+                                    <input type="text" class="form-control" id="nis" name="nis"
+                                        value="<?php echo $rowA['nis']; ?>" placeholder="NIS Anggota">
                                 </div>
                                 <div class="form-group">
                                     <label for="alamat">Alamat Anggota</label>
-                                    <input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $rowA['alamat']; ?>" placeholder="Alamat Anggota">
+                                    <input type="text" class="form-control" id="alamat" name="alamat"
+                                        value="<?php echo $rowA['alamat']; ?>" placeholder="Alamat Anggota">
                                 </div>
                                 <div class="form-group">
                                     <label for="nomorhp">Nomor HP Anggota</label>
-                                    <input type="text" class="form-control" id="nomorhp" name="nomorhp" value="<?php echo $rowA['nomor_hp']; ?>" placeholder="Nomor HP Anggota">
+                                    <input type="text" class="form-control" id="nomorhp" name="nomorhp"
+                                        value="<?php echo $rowA['nomor_hp']; ?>" placeholder="Nomor HP Anggota">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email Anggota</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $rowA['email']; ?>" placeholder="Email Anggota">
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        value="<?php echo $rowA['email']; ?>" placeholder="Email Anggota">
                                 </div>
                                 <div class="form-group">
                                     <label for="tanggal">Tanggal Bergabung Anggota</label>
-                                    <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?php echo $rowA['tgl_bergabung']; ?>" placeholder="Tanggal Bergabung Anggota">
+                                    <input type="date" class="form-control" id="tanggal" name="tanggal"
+                                        value="<?php echo $rowA['tgl_bergabung']; ?>"
+                                        placeholder="Tanggal Bergabung Anggota">
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username"
+                                        value="<?php echo $rowA['username']; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password">
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -248,15 +289,18 @@ if (!isset($_SESSION["login_type"])) {
             <?php } ?>
             <!-- END PAGE CONTENT-->
             <footer class="page-footer">
-                <div class="font-13">2023 © <b>AANDANU</b> - All rights reserved.</div>
-                <a class="px-4" href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589" target="_blank">BUY PREMIUM</a>
+                <div class="font-13">2024 © <b>SALSABILA</b> - All rights reserved.</div>
+                <a class="px-4"
+                    href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589"
+                    target="_blank">BUY PREMIUM</a>
                 <div class="to-top"><i class="fa fa-angle-double-up"></i></div>
             </footer>
         </div>
     </div>
     <!-- BEGIN THEME CONFIG PANEL-->
     <div class="theme-config">
-        <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i class="ti-close theme-config-close"></i></div>
+        <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i
+                class="ti-close theme-config-close"></i></div>
         <div class="theme-config-box">
             <div class="text-center font-18 m-b-20">SETTINGS</div>
             <div class="font-strong">LAYOUT OPTIONS</div>
@@ -402,35 +446,35 @@ if (!isset($_SESSION["login_type"])) {
     <script src="assets/js/app.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
     <script type="text/javascript">
-        $(function() {
-            $('#example-table').DataTable({
-                pageLength: 10,
-                //"ajax": './assets/demo/data/table_data.json',
-                /*"columns": [
-                    { "data": "name" },
-                    { "data": "office" },
-                    { "data": "extn" },
-                    { "data": "start_date" },
-                    { "data": "salary" }
-                ]*/
-            });
-        })
+    $(function() {
+        $('#example-table').DataTable({
+            pageLength: 10,
+            //"ajax": './assets/demo/data/table_data.json',
+            /*"columns": [
+                { "data": "name" },
+                { "data": "office" },
+                { "data": "extn" },
+                { "data": "start_date" },
+                { "data": "salary" }
+            ]*/
+        });
+    })
     </script>
 
     <script>
-        var inactivityTimeout; // Timeout untuk aktivitas
+    var inactivityTimeout; // Timeout untuk aktivitas
 
-        // Fungsi untuk mereset timeout
-        function resetInactivityTimeout() {
-            clearTimeout(inactivityTimeout);
-            inactivityTimeout = setTimeout(function() {
-                window.location.href = "lockscreen.php";
-            }, 200000); // Mengarahkan ke lockscreen.php setelah 10 menit (600000 ms) tidak ada aktivitas
-        }
+    // Fungsi untuk mereset timeout
+    function resetInactivityTimeout() {
+        clearTimeout(inactivityTimeout);
+        inactivityTimeout = setTimeout(function() {
+            window.location.href = "lockscreen.php";
+        }, 200000); // Mengarahkan ke lockscreen.php setelah 10 menit (600000 ms) tidak ada aktivitas
+    }
 
-        // Menambahkan event listener untuk mendeteksi aktivitas
-        document.addEventListener("mousemove", resetInactivityTimeout);
-        document.addEventListener("keydown", resetInactivityTimeout);
+    // Menambahkan event listener untuk mendeteksi aktivitas
+    document.addEventListener("mousemove", resetInactivityTimeout);
+    document.addEventListener("keydown", resetInactivityTimeout);
     </script>
 </body>
 

@@ -25,67 +25,70 @@ $tanggala = strftime('%d %B %Y', strtotime($tglA));
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kwitansi Peminjaman Buku</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
+    body {
+        margin: 0;
+        padding: 0;
+    }
 
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+    }
 
-        .header {
-            text-align: center;
-        }
+    .header {
+        text-align: center;
+    }
 
-        .header h1 {
-            font-size: 22px;
-            margin-bottom: 0;
-        }
+    .header h1 {
+        font-size: 22px;
+        margin-bottom: 0;
+    }
 
-        .info {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+    .info {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
 
-        .info hr {
-            border-top: 2px solid #333;
-        }
+    .info hr {
+        border-top: 2px solid #333;
+    }
 
-        .info table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+    .info table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-        .info table th, .info table td {
-            border: 1px solid #333;
-            padding: 8px;
-            text-align: left;
-            font-size: 13px;
-        }
+    .info table th,
+    .info table td {
+        border: 1px solid #333;
+        padding: 8px;
+        text-align: left;
+        font-size: 13px;
+    }
 
-        .footer {
-            margin-top: 20px;
-            text-align: right;
-        }
+    .footer {
+        margin-top: 20px;
+        text-align: right;
+    }
     </style>
 </head>
+
 <body>
     <div class="container info">
         <hr>
         <div class="header">
-            <h1>Nama Sekolah</h1>
-            <p class="mb-0">Nama Perpustakaan</p>
-            <p>Nomor HP</p>
+            <h1>SMK Negeri 40 JAKARTA</h1>
+            <p class="mb-0">Fourty Library</p>
+            <p>081998988475</p>
         </div>
         <div class="info">
             <hr>
@@ -124,14 +127,15 @@ $tanggala = strftime('%d %B %Y', strtotime($tglA));
         <div class="footer">
             <div class="col-md-12">
                 Dicetak oleh,
-                <br/><br>
+                <br /><br>
                 <br><b><u><?php echo $_SESSION['nama_admin']; ?></u></b>
             </div>
         </div>
     </div>
 
     <script>
-        window.print();
+    window.print();
     </script>
 </body>
+
 </html>

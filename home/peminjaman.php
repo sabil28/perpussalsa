@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'koneksi.php';
+$hak_akses = $_SESSION['hak_akses'];
 if (!isset($_SESSION["login_type"])) {
     echo '<script language="javascript" type="text/javascript">
         alert("Anda Tidak Berhak Memasuki Halaman Ini.!");</script>';
@@ -58,7 +59,8 @@ if (!isset($_SESSION["login_type"])) {
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
                     <li class="dropdown dropdown-notification">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span class="notify-signal"></span></i></a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span
+                                    class="notify-signal"></span></i></a>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
                             <li class="dropdown-menu-header">
                                 <div>
@@ -76,7 +78,8 @@ if (!isset($_SESSION["login_type"])) {
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <img src="./assets/img/admin-avatar.png" />
-                            <span></span><?php echo $_SESSION['nama_admin']; ?><i class="fa fa-angle-down m-l-5"></i></a>
+                            <span></span><?php echo $_SESSION['nama_admin']; ?><i
+                                class="fa fa-angle-down m-l-5"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="keluar.php"><i class="fa fa-power-off"></i>Logout</a>
                         </ul>
@@ -104,10 +107,12 @@ if (!isset($_SESSION["login_type"])) {
                 <div class="ibox">
                     <div class="ibox-head">
                         <div class="ibox-title">Data Peminjaman</div>
-                        <a class="btn btn-sm btn-primary" href="" data-toggle="modal" data-target="#pinjamModal"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <a class="btn btn-sm btn-primary" href="" data-toggle="modal" data-target="#pinjamModal"><i
+                                class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                     <div class="ibox-body">
-                        <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+                        <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0"
+                            width="100%">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -124,7 +129,23 @@ if (!isset($_SESSION["login_type"])) {
                                 <?php 
                                 $no=1;
 
-                                $data = "SELECT * FROM tb_peminjaman,tb_anggota, tb_buku WHERE id_anggota=agt_id AND id_buku=buku_id ORDER BY id_peminjaman DESC";
+                               if ($hak_akses == 'anggota') {
+                                // Ambil id_anggota dari session
+                                    $id_anggota = $_SESSION['id_anggota'];
+    
+                                // Query SQL untuk mendapatkan data peminjaman anggota yang sedang login
+                                    $data = "SELECT * FROM tb_peminjaman
+                                     JOIN tb_anggota ON tb_peminjaman.agt_id = tb_anggota.id_anggota
+                                     JOIN tb_buku ON tb_peminjaman.buku_id = tb_buku.id_buku
+                                     WHERE tb_peminjaman.agt_id = $id_anggota
+                                     ORDER BY tb_peminjaman.id_peminjaman DESC";
+                                } else {
+                                 // Jika hak aksesnya bukan "anggota"
+                                    $data = "SELECT * FROM tb_peminjaman
+                                    JOIN tb_anggota ON tb_peminjaman.agt_id = tb_anggota.id_anggota
+                                    JOIN tb_buku ON tb_peminjaman.buku_id = tb_buku.id_buku
+                                    ORDER BY tb_peminjaman.id_peminjaman DESC";
+                                }
                                 $result = mysqli_query($koneksi,$data);
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     $status = $row['status_peminjaman'];
@@ -148,19 +169,26 @@ if (!isset($_SESSION["login_type"])) {
                                     <td><?php echo $row['tgl_pengembalian_a']; ?></td>
                                     <td style="text-align: center;">
                                         <?php if ($status == 1) { ?>
-                                            <span class="badge badge-primary">Dipinjam</span>
+                                        <span class="badge badge-primary">Dipinjam</span>
                                         <?php }elseif ($status == 2) { ?>
-                                            <span class="badge badge-success">Dikembalikan</span>
+                                        <span class="badge badge-success">Dikembalikan</span>
                                         <?php }elseif ($status == 3) { ?>
-                                            <span class="badge badge-danger">Telat</span>
+                                        <span class="badge badge-danger">Telat</span>
                                         <?php } ?>
                                     </td>
                                     <td style="text-align: center;">
-                                        <a class="btn btn-sm btn-warning" href="" data-toggle="modal" data-toggle="modal" data-target="#editModal<?php echo $row['id_peminjaman']; ?>"><i class="fa fa-cog"></i></a><br><br>
+                                        <a class="btn btn-sm btn-warning" href="" data-toggle="modal"
+                                            data-toggle="modal"
+                                            data-target="#editModal<?php echo $row['id_peminjaman']; ?>"><i
+                                                class="fa fa-cog"></i></a><br><br>
 
-                                        <a class="btn btn-sm btn-primary" href="cetak_kwintasi.php?id=<?php echo $row['id_peminjaman']; ?>" target="_blank"><i class="fa fa-print"></i></a><br><br>
+                                        <a class="btn btn-sm btn-primary"
+                                            href="cetak_kwintasi.php?id=<?php echo $row['id_peminjaman']; ?>"
+                                            target="_blank"><i class="fa fa-print"></i></a><br><br>
 
-                                        <a class="btn btn-sm <?php echo $btn; ?>" href="" data-toggle="modal" data-target="#statusModal<?php echo $row['id_peminjaman']; ?>"><i class="<?php echo $icon; ?>"></i></a>
+                                        <a class="btn btn-sm <?php echo $btn; ?>" href="" data-toggle="modal"
+                                            data-target="#statusModal<?php echo $row['id_peminjaman']; ?>"><i
+                                                class="<?php echo $icon; ?>"></i></a>
                                     </td>
                                 </tr>
                                 <?php } ?>
@@ -172,84 +200,94 @@ if (!isset($_SESSION["login_type"])) {
 
             <!-- Modal Tambah-->
             <div class="modal fade" id="pinjamModal">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <!-- Modal Header -->
-                  <div class="modal-header">
-                    <h4 class="modal-title">Peminjaman Buku</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
-                  
-                  <!-- Modal body -->
-                  <div class="modal-body">
-                    <div class="container">
-                        <form method="POST" action="proses_peminjaman.php">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5>Formulir Peminjaman</h5>
-                                <div class="form-group">
-                                  <label for="namaAnggota">Nama Anggota:</label>
-                                  <select class="form-control" name="anggota">
-                                      <option selected disabled>Pilih Anggota</option>
-                                      <?php 
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Peminjaman Buku</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="container">
+                                <form method="POST" action="proses_peminjaman.php">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>Formulir Peminjaman</h5>
+                                            <div class="form-group">
+                                                <label for="namaAnggota">Nama Anggota:</label>
+                                                <select class="form-control" name="anggota">
+                                                    <option selected disabled>Pilih Anggota</option>
+                                                    <?php 
                                       $a = mysqli_query($koneksi,"SELECT * FROM tb_anggota");
                                       while ($rowa = mysqli_fetch_assoc($a)){
                                       ?>
-                                      <option value="<?php echo $rowa['id_anggota']; ?>"><?php echo $rowa['nama_anggota']; ?></option>
-                                      <?php } ?>
-                                  </select>
-                                </div>
-                                <div class="form-group">
-                                  <label for="namaBuku">Nama Buku:</label>
-                                  <select class="form-control" name="buku">
-                                      <option selected disabled>Pilih Judul Buku</option>
-                                      <?php 
+                                                    <option value="<?php echo $rowa['id_anggota']; ?>">
+                                                        <?php echo $rowa['nama_anggota']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="namaBuku">Nama Buku:</label>
+                                                <select class="form-control" name="buku">
+                                                    <option selected disabled>Pilih Judul Buku</option>
+                                                    <?php 
                                       $b = mysqli_query($koneksi,"SELECT * FROM tb_buku");
                                       while ($rowb = mysqli_fetch_assoc($b)){
                                       ?>
-                                      <option value="<?php echo $rowb['id_buku']; ?>"><?php echo $rowb['judul_buku']; ?></option>
-                                      <?php } ?>
-                                  </select>
-                                </div>
-                                <div class="form-group">
-                                  <label for="tanggalPeminjaman">Tanggal Peminjaman:</label>
-                                  <input type="date" class="form-control" id="tanggalPeminjaman" name="tanggalp">
-                                </div>
-                                <div class="form-group">
-                                  <label for="namaPeminjaman">Kelas Peminjam:</label>
-                                  <input type="text" class="form-control" id="namaPeminjam" name="nama">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5>Tanggal Pengembalian</h5>
-                                <div class="form-group">
-                                  <label for="tanggalPengembalianRencana">Tanggal Pengembalian Rencana:</label>
-                                  <input type="date" class="form-control" id="tanggalPengembalianRencana" name="tanggalpr">
-                                </div>
-                                <div class="form-group">
-                                  <label for="tanggalPengembalianAktual">Tanggal Pengembalian Aktual:</label>
-                                  <input type="date" class="form-control" id="tanggalPengembalianAktual" name="tanggalpa">
-                                </div>
-                                <div class="form-group">
-                                  <label for="jumlahPinjam">Jumlah Peminjaman:</label>
-                                  <input type="number" class="form-control" id="jumlahPinjman" name="jumlah">
-                                </div>
-                                <div class="form-group">
-                                  <label for="catatan">Catatan:</label>
-                                  <textarea class="form-control" id="catatan" name="catatan" rows="3"></textarea>
-                                </div>
+                                                    <option value="<?php echo $rowb['id_buku']; ?>">
+                                                        <?php echo $rowb['judul_buku']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tanggalPeminjaman">Tanggal Peminjaman:</label>
+                                                <input type="date" class="form-control" id="tanggalPeminjaman"
+                                                    name="tanggalp">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="namaPeminjaman">Kelas Peminjam:</label>
+                                                <input type="text" class="form-control" id="namaPeminjam" name="nama">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5>Tanggal Pengembalian</h5>
+                                            <div class="form-group">
+                                                <label for="tanggalPengembalianRencana">Tanggal Pengembalian
+                                                    Rencana:</label>
+                                                <input type="date" class="form-control" id="tanggalPengembalianRencana"
+                                                    name="tanggalpr">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tanggalPengembalianAktual">Tanggal Pengembalian
+                                                    Aktual:</label>
+                                                <input type="date" class="form-control" id="tanggalPengembalianAktual"
+                                                    name="tanggalpa">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="jumlahPinjam">Jumlah Peminjaman:</label>
+                                                <input type="number" class="form-control" id="jumlahPinjman"
+                                                    name="jumlah">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="catatan">Catatan:</label>
+                                                <textarea class="form-control" id="catatan" name="catatan"
+                                                    rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Tutup</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                        </form>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
 
             <!-- Modal Edit-->
@@ -260,88 +298,106 @@ if (!isset($_SESSION["login_type"])) {
                 $jmlp = $rowp['jumlah_pinjam'];
             ?>
             <div class="modal fade" id="editModal<?php echo $rowp['id_peminjaman'] ?>">
-              <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                  <!-- Modal Header -->
-                  <div class="modal-header">
-                    <h4 class="modal-title">Edit Peminjaman Buku</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
-                  
-                  <!-- Modal body -->
-                  <div class="modal-body">
-                    <div class="container">
-                        <form method="POST" action="update_peminjaman.php">
-                        <input type="hidden" name="idp" value="<?php echo $rowp['id_peminjaman'] ?>">    
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5>Formulir Peminjaman</h5>
-                                <div class="form-group">
-                                  <label for="namaAnggota">Nama Anggota:</label>
-                                  <select class="form-control" name="anggota">
-                                      <option selected disabled>Pilih Anggota</option>
-                                      <?php 
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Peminjaman Buku</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="container">
+                                <form method="POST" action="update_peminjaman.php">
+                                    <input type="hidden" name="idp" value="<?php echo $rowp['id_peminjaman'] ?>">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5>Formulir Peminjaman</h5>
+                                            <div class="form-group">
+                                                <label for="namaAnggota">Nama Anggota:</label>
+                                                <select class="form-control" name="anggota">
+                                                    <option selected disabled>Pilih Anggota</option>
+                                                    <?php 
                                       $a = mysqli_query($koneksi,"SELECT * FROM tb_anggota");
                                       while ($rowa = mysqli_fetch_assoc($a)){
                                       ?>
-                                      <option <?php if($rowa['id_anggota'] == $rowp['agt_id']){echo "selected='selected'";} ?> value="<?php echo $rowa['id_anggota']; ?>"><?php echo $rowa['nama_anggota']; ?></option>
-                                      <?php } ?>
-                                  </select>
-                                </div>
-                                <div class="form-group">
-                                  <label for="namaBuku">Nama Buku:</label>
-                                  <select class="form-control" name="buku">
-                                      <option selected disabled>Pilih Judul Buku</option>
-                                      <?php 
+                                                    <option
+                                                        <?php if($rowa['id_anggota'] == $rowp['agt_id']){echo "selected='selected'";} ?>
+                                                        value="<?php echo $rowa['id_anggota']; ?>">
+                                                        <?php echo $rowa['nama_anggota']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="namaBuku">Nama Buku:</label>
+                                                <select class="form-control" name="buku">
+                                                    <option selected disabled>Pilih Judul Buku</option>
+                                                    <?php 
                                       $b = mysqli_query($koneksi,"SELECT * FROM tb_buku");
                                       while ($rowb = mysqli_fetch_assoc($b)){
                                       ?>
-                                      <option <?php if($rowb['id_buku'] == $rowp['buku_id']){echo "selected='selected'";} ?> value="<?php echo $rowb['id_buku']; ?>"><?php echo $rowb['judul_buku']; ?></option>
-                                      <?php } ?>
-                                  </select>
-                                </div>
-                                <div class="form-group">
-                                  <label for="tanggalPeminjaman">Tanggal Peminjaman:</label>
-                                  <input type="date" class="form-control" id="tanggalPeminjaman" name="tanggalp" value="<?php echo $rowp['tgl_peminjaman']; ?>">
-                                </div>
-                                <div class="form-group">
-                                  <label for="namaPeminjaman">Kelas Peminjam:</label>
-                                  <input type="text" class="form-control" id="namaPeminjam" name="nama" value="<?php echo $rowp['nama_pinjam']; ?>">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <h5>Tanggal Pengembalian</h5>
-                                <div class="form-group">
-                                  <label for="tanggalPengembalianRencana">Tanggal Pengembalian Rencana:</label>
-                                  <input type="date" class="form-control" id="tanggalPengembalianRencana" name="tanggalpr" value="<?php echo $rowp['tgl_pengembalian_r']; ?>">
-                                </div>
-                                <div class="form-group">
-                                  <label for="tanggalPengembalianAktual">Tanggal Pengembalian Aktual:</label>
-                                  <input type="date" class="form-control" id="tanggalPengembalianAktual" name="tanggalpa" value="<?php echo $rowp['tgl_pengembalian_a']; ?>">
-                                </div>
-                                <div class="form-group">
-                                  <label for="jumlahPinjam">Jumlah Peminjaman:</label>
-                                  <input type="number" class="form-control" id="jumlahPinjman" name="jumlah" value="<?php echo $rowp['jumlah_pinjam']; ?>" readonly>
-                                  <?php if ($rowp['status_peminjaman'] == 1) { ?>
-                                    <a class="btn btn-sm btn-warning" href="" data-toggle="modal" data-target="#modalForm<?php echo $rowp['id_peminjaman']; ?>">Ubah Jumlah Pinjam Buku</a>
-                                  <?php } ?>
-                                </div>
-                                <div class="form-group">
-                                  <label for="catatan">Catatan:</label>
-                                  <textarea class="form-control" id="catatan" name="catatan" rows="3"><?php echo $rowp['catatan']; ?></textarea>
-                                </div>
+                                                    <option
+                                                        <?php if($rowb['id_buku'] == $rowp['buku_id']){echo "selected='selected'";} ?>
+                                                        value="<?php echo $rowb['id_buku']; ?>">
+                                                        <?php echo $rowb['judul_buku']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tanggalPeminjaman">Tanggal Peminjaman:</label>
+                                                <input type="date" class="form-control" id="tanggalPeminjaman"
+                                                    name="tanggalp" value="<?php echo $rowp['tgl_peminjaman']; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="namaPeminjaman">Kelas Peminjam:</label>
+                                                <input type="text" class="form-control" id="namaPeminjam" name="nama"
+                                                    value="<?php echo $rowp['nama_pinjam']; ?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5>Tanggal Pengembalian</h5>
+                                            <div class="form-group">
+                                                <label for="tanggalPengembalianRencana">Tanggal Pengembalian
+                                                    Rencana:</label>
+                                                <input type="date" class="form-control" id="tanggalPengembalianRencana"
+                                                    name="tanggalpr" value="<?php echo $rowp['tgl_pengembalian_r']; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="tanggalPengembalianAktual">Tanggal Pengembalian
+                                                    Aktual:</label>
+                                                <input type="date" class="form-control" id="tanggalPengembalianAktual"
+                                                    name="tanggalpa" value="<?php echo $rowp['tgl_pengembalian_a']; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="jumlahPinjam">Jumlah Peminjaman:</label>
+                                                <input type="number" class="form-control" id="jumlahPinjman"
+                                                    name="jumlah" value="<?php echo $rowp['jumlah_pinjam']; ?>"
+                                                    readonly>
+                                                <?php if ($rowp['status_peminjaman'] == 1) { ?>
+                                                <a class="btn btn-sm btn-warning" href="" data-toggle="modal"
+                                                    data-target="#modalForm<?php echo $rowp['id_peminjaman']; ?>">Ubah
+                                                    Jumlah Pinjam Buku</a>
+                                                <?php } ?>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="catatan">Catatan:</label>
+                                                <textarea class="form-control" id="catatan" name="catatan"
+                                                    rows="3"><?php echo $rowp['catatan']; ?></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Tutup</button>
+                                        <button type="submit" class="btn btn-success">Update</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-success">Update</button>
-                        </div>
-                        </form>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
             <?php } ?>
 
@@ -350,7 +406,8 @@ if (!isset($_SESSION["login_type"])) {
             $pin = mysqli_query($koneksi, "SELECT * FROM tb_peminjaman");
             while ($rowpin = mysqli_fetch_assoc($pin)){
             ?>
-            <div class="modal fade" id="modalForm<?php echo $rowpin['id_peminjaman']; ?>" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
+            <div class="modal fade" id="modalForm<?php echo $rowpin['id_peminjaman']; ?>" tabindex="-1" role="dialog"
+                aria-labelledby="modalFormLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -365,12 +422,14 @@ if (!isset($_SESSION["login_type"])) {
                                 <input type="hidden" name="idpinjam" value="<?php echo $rowpin['id_peminjaman']; ?>">
                                 <div class="form-group">
                                     <label for="jumlahPinjamawal">Jumlah Pinjam Awal</label>
-                                    <input style="text-align: center;" type="text" class="form-control" id="jumlahPinjam" value="<?php echo $rowpin['jumlah_pinjam']; ?>" readonly>
+                                    <input style="text-align: center;" type="text" class="form-control"
+                                        id="jumlahPinjam" value="<?php echo $rowpin['jumlah_pinjam']; ?>" readonly>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="jumlahPinjam">Jumlah Pinjam/Kembalikan</label>
-                                        <input style="text-align: center;" type="text" class="form-control" id="kembalikanPinjam" name="jumlah_pinjam">
+                                        <input style="text-align: center;" type="text" class="form-control"
+                                            id="kembalikanPinjam" name="jumlah_pinjam">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="actionPinjam">Aksi</label>
@@ -398,48 +457,58 @@ if (!isset($_SESSION["login_type"])) {
             while ($rowpin = mysqli_fetch_assoc($pin)){
             ?>
             <div class="modal" id="statusModal<?php echo $rowpin['id_peminjaman']; ?>">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Ubah Status Pinjam</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
-                  <div class="modal-body">
-                    <form method="POST" action="kembali_pinjam.php">
-                        <input type="hidden" name="idpin" value="<?php echo $rowpin['id_peminjaman']; ?>">
-                        <input type="hidden" name="idbuku" value="<?php echo $rowpin['id_buku']; ?>">
-                        <input type="hidden" name="jumlah" value="<?php echo $rowpin['jumlah_pinjam']; ?>">
-                        <div class="form-group">
-                            <label for="statusSelect">Pilih Status:</label>
-                            <select class="form-control" id="statusSelect" name="status">
-                                <option selected disabled>Pilih Status</option>  
-                                <option <?php if($rowpin['status_peminjaman'] == "1"){echo "selected='selected'";} ?> value="1">Proses</option>
-                                <option <?php if($rowpin['status_peminjaman'] == "2"){echo "selected='selected'";} ?> <?php echo ($rowpin['status_peminjaman'] == "2") ? "disabled" : ""; ?> value="2">Dikembalikan</option>
-                                <option <?php if($rowpin['status_peminjaman'] == "3"){echo "selected='selected'";} ?> value="3">Telat</option>
-                            </select>
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Ubah Status Pinjam</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-primary">Ubah</button>
+                        <div class="modal-body">
+                            <form method="POST" action="kembali_pinjam.php">
+                                <input type="hidden" name="idpin" value="<?php echo $rowpin['id_peminjaman']; ?>">
+                                <input type="hidden" name="idbuku" value="<?php echo $rowpin['id_buku']; ?>">
+                                <input type="hidden" name="jumlah" value="<?php echo $rowpin['jumlah_pinjam']; ?>">
+                                <div class="form-group">
+                                    <label for="statusSelect">Pilih Status:</label>
+                                    <select class="form-control" id="statusSelect" name="status">
+                                        <option selected disabled>Pilih Status</option>
+                                        <option
+                                            <?php if($rowpin['status_peminjaman'] == "1"){echo "selected='selected'";} ?>
+                                            value="1">Proses</option>
+                                        <option
+                                            <?php if($rowpin['status_peminjaman'] == "2"){echo "selected='selected'";} ?>
+                                            <?php echo ($rowpin['status_peminjaman'] == "2") ? "disabled" : ""; ?>
+                                            value="2">Dikembalikan</option>
+                                        <option
+                                            <?php if($rowpin['status_peminjaman'] == "3"){echo "selected='selected'";} ?>
+                                            value="3">Telat</option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                    <button type="submit" class="btn btn-primary">Ubah</button>
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                  </div>
+                    </div>
                 </div>
-              </div>
             </div>
             <?php } ?>
 
             <!-- END PAGE CONTENT-->
             <footer class="page-footer">
                 <div class="font-13">2023 © <b>AANDANU</b> - All rights reserved.</div>
-                <a class="px-4" href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589" target="_blank">BUY PREMIUM</a>
+                <a class="px-4"
+                    href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589"
+                    target="_blank">BUY PREMIUM</a>
                 <div class="to-top"><i class="fa fa-angle-double-up"></i></div>
             </footer>
         </div>
     </div>
     <!-- BEGIN THEME CONFIG PANEL-->
     <div class="theme-config">
-        <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i class="ti-close theme-config-close"></i></div>
+        <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i
+                class="ti-close theme-config-close"></i></div>
         <div class="theme-config-box">
             <div class="text-center font-18 m-b-20">SETTINGS</div>
             <div class="font-strong">LAYOUT OPTIONS</div>
@@ -585,35 +654,35 @@ if (!isset($_SESSION["login_type"])) {
     <script src="assets/js/app.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
     <script type="text/javascript">
-        $(function() {
-            $('#example-table').DataTable({
-                pageLength: 10,
-                //"ajax": './assets/demo/data/table_data.json',
-                /*"columns": [
-                    { "data": "name" },
-                    { "data": "office" },
-                    { "data": "extn" },
-                    { "data": "start_date" },
-                    { "data": "salary" }
-                ]*/
-            });
-        })
+    $(function() {
+        $('#example-table').DataTable({
+            pageLength: 10,
+            //"ajax": './assets/demo/data/table_data.json',
+            /*"columns": [
+                { "data": "name" },
+                { "data": "office" },
+                { "data": "extn" },
+                { "data": "start_date" },
+                { "data": "salary" }
+            ]*/
+        });
+    })
     </script>
 
     <script>
-        var inactivityTimeout; // Timeout untuk aktivitas
+    var inactivityTimeout; // Timeout untuk aktivitas
 
-        // Fungsi untuk mereset timeout
-        function resetInactivityTimeout() {
-            clearTimeout(inactivityTimeout);
-            inactivityTimeout = setTimeout(function() {
-                window.location.href = "lockscreen.php";
-            }, 200000); // Mengarahkan ke lockscreen.php setelah 10 menit (600000 ms) tidak ada aktivitas
-        }
+    // Fungsi untuk mereset timeout
+    function resetInactivityTimeout() {
+        clearTimeout(inactivityTimeout);
+        inactivityTimeout = setTimeout(function() {
+            window.location.href = "lockscreen.php";
+        }, 200000); // Mengarahkan ke lockscreen.php setelah 10 menit (600000 ms) tidak ada aktivitas
+    }
 
-        // Menambahkan event listener untuk mendeteksi aktivitas
-        document.addEventListener("mousemove", resetInactivityTimeout);
-        document.addEventListener("keydown", resetInactivityTimeout);
+    // Menambahkan event listener untuk mendeteksi aktivitas
+    document.addEventListener("mousemove", resetInactivityTimeout);
+    document.addEventListener("keydown", resetInactivityTimeout);
     </script>
 </body>
 

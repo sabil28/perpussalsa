@@ -76,7 +76,8 @@ if (!isset($_SESSION["login_type"])) {
                                                 <img src="./assets/img/users/u1.jpg" />
                                             </div>
                                             <div class="media-body">
-                                                <div class="font-strong"> </div>Jeanne Gonzalez<small class="text-muted float-right">Just now</small>
+                                                <div class="font-strong"> </div>Jeanne Gonzalez<small
+                                                    class="text-muted float-right">Just now</small>
                                                 <div class="font-13">Your proposal interested me.</div>
                                             </div>
                                         </div>
@@ -87,7 +88,8 @@ if (!isset($_SESSION["login_type"])) {
                                                 <img src="./assets/img/users/u2.jpg" />
                                             </div>
                                             <div class="media-body">
-                                                <div class="font-strong"></div>Becky Brooks<small class="text-muted float-right">18 mins</small>
+                                                <div class="font-strong"></div>Becky Brooks<small
+                                                    class="text-muted float-right">18 mins</small>
                                                 <div class="font-13">Lorem Ipsum is simply.</div>
                                             </div>
                                         </div>
@@ -98,7 +100,8 @@ if (!isset($_SESSION["login_type"])) {
                                                 <img src="./assets/img/users/u3.jpg" />
                                             </div>
                                             <div class="media-body">
-                                                <div class="font-strong"></div>Frank Cruz<small class="text-muted float-right">18 mins</small>
+                                                <div class="font-strong"></div>Frank Cruz<small
+                                                    class="text-muted float-right">18 mins</small>
                                                 <div class="font-13">Lorem Ipsum is simply.</div>
                                             </div>
                                         </div>
@@ -109,7 +112,8 @@ if (!isset($_SESSION["login_type"])) {
                                                 <img src="./assets/img/users/u4.jpg" />
                                             </div>
                                             <div class="media-body">
-                                                <div class="font-strong"></div>Rose Pearson<small class="text-muted float-right">3 hrs</small>
+                                                <div class="font-strong"></div>Rose Pearson<small
+                                                    class="text-muted float-right">3 hrs</small>
                                                 <div class="font-13">Lorem Ipsum is simply.</div>
                                             </div>
                                         </div>
@@ -119,7 +123,8 @@ if (!isset($_SESSION["login_type"])) {
                         </ul>
                     </li>
                     <li class="dropdown dropdown-notification">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span class="notify-signal"></span></i></a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span
+                                    class="notify-signal"></span></i></a>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
                             <li class="dropdown-menu-header">
                                 <div>
@@ -132,37 +137,49 @@ if (!isset($_SESSION["login_type"])) {
                                     <a class="list-group-item">
                                         <div class="media">
                                             <div class="media-img">
-                                                <span class="badge badge-success badge-big"><i class="fa fa-check"></i></span>
+                                                <span class="badge badge-success badge-big"><i
+                                                        class="fa fa-check"></i></span>
                                             </div>
                                             <div class="media-body">
-                                                <div class="font-13">4 task compiled</div><small class="text-muted">22 mins</small></div>
+                                                <div class="font-13">4 task compiled</div><small class="text-muted">22
+                                                    mins</small>
+                                            </div>
                                         </div>
                                     </a>
                                     <a class="list-group-item">
                                         <div class="media">
                                             <div class="media-img">
-                                                <span class="badge badge-default badge-big"><i class="fa fa-shopping-basket"></i></span>
+                                                <span class="badge badge-default badge-big"><i
+                                                        class="fa fa-shopping-basket"></i></span>
                                             </div>
                                             <div class="media-body">
-                                                <div class="font-13">You have 12 new orders</div><small class="text-muted">40 mins</small></div>
+                                                <div class="font-13">You have 12 new orders</div><small
+                                                    class="text-muted">40 mins</small>
+                                            </div>
                                         </div>
                                     </a>
                                     <a class="list-group-item">
                                         <div class="media">
                                             <div class="media-img">
-                                                <span class="badge badge-danger badge-big"><i class="fa fa-bolt"></i></span>
+                                                <span class="badge badge-danger badge-big"><i
+                                                        class="fa fa-bolt"></i></span>
                                             </div>
                                             <div class="media-body">
-                                                <div class="font-13">Server #7 rebooted</div><small class="text-muted">2 hrs</small></div>
+                                                <div class="font-13">Server #7 rebooted</div><small class="text-muted">2
+                                                    hrs</small>
+                                            </div>
                                         </div>
                                     </a>
                                     <a class="list-group-item">
                                         <div class="media">
                                             <div class="media-img">
-                                                <span class="badge badge-success badge-big"><i class="fa fa-user"></i></span>
+                                                <span class="badge badge-success badge-big"><i
+                                                        class="fa fa-user"></i></span>
                                             </div>
                                             <div class="media-body">
-                                                <div class="font-13">New user registered</div><small class="text-muted">2 hrs</small></div>
+                                                <div class="font-13">New user registered</div><small
+                                                    class="text-muted">2 hrs</small>
+                                            </div>
                                         </div>
                                     </a>
                                 </div>
@@ -206,7 +223,8 @@ if (!isset($_SESSION["login_type"])) {
                         <div class="ibox-title">Data Riwayat</div>
                     </div>
                     <div class="ibox-body">
-                        <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+                        <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0"
+                            width="100%">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -239,15 +257,18 @@ if (!isset($_SESSION["login_type"])) {
             </div>
             <!-- END PAGE CONTENT-->
             <footer class="page-footer">
-                <div class="font-13">2023 © <b>AANDANU</b> - All rights reserved.</div>
-                <a class="px-4" href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589" target="_blank">BUY PREMIUM</a>
+                <div class="font-13">2024 © <b>SALSABILA</b> - All rights reserved.</div>
+                <a class="px-4"
+                    href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589"
+                    target="_blank">BUY PREMIUM</a>
                 <div class="to-top"><i class="fa fa-angle-double-up"></i></div>
             </footer>
         </div>
     </div>
     <!-- BEGIN THEME CONFIG PANEL-->
     <div class="theme-config">
-        <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i class="ti-close theme-config-close"></i></div>
+        <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i
+                class="ti-close theme-config-close"></i></div>
         <div class="theme-config-box">
             <div class="text-center font-18 m-b-20">SETTINGS</div>
             <div class="font-strong">LAYOUT OPTIONS</div>
@@ -393,35 +414,35 @@ if (!isset($_SESSION["login_type"])) {
     <script src="assets/js/app.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
     <script type="text/javascript">
-        $(function() {
-            $('#example-table').DataTable({
-                pageLength: 10,
-                //"ajax": './assets/demo/data/table_data.json',
-                /*"columns": [
-                    { "data": "name" },
-                    { "data": "office" },
-                    { "data": "extn" },
-                    { "data": "start_date" },
-                    { "data": "salary" }
-                ]*/
-            });
-        })
+    $(function() {
+        $('#example-table').DataTable({
+            pageLength: 10,
+            //"ajax": './assets/demo/data/table_data.json',
+            /*"columns": [
+                { "data": "name" },
+                { "data": "office" },
+                { "data": "extn" },
+                { "data": "start_date" },
+                { "data": "salary" }
+            ]*/
+        });
+    })
     </script>
 
     <script>
-        var inactivityTimeout; // Timeout untuk aktivitas
+    var inactivityTimeout; // Timeout untuk aktivitas
 
-        // Fungsi untuk mereset timeout
-        function resetInactivityTimeout() {
-            clearTimeout(inactivityTimeout);
-            inactivityTimeout = setTimeout(function() {
-                window.location.href = "lockscreen.php";
-            }, 200000); // Mengarahkan ke lockscreen.php setelah 10 menit (600000 ms) tidak ada aktivitas
-        }
+    // Fungsi untuk mereset timeout
+    function resetInactivityTimeout() {
+        clearTimeout(inactivityTimeout);
+        inactivityTimeout = setTimeout(function() {
+            window.location.href = "lockscreen.php";
+        }, 200000); // Mengarahkan ke lockscreen.php setelah 10 menit (600000 ms) tidak ada aktivitas
+    }
 
-        // Menambahkan event listener untuk mendeteksi aktivitas
-        document.addEventListener("mousemove", resetInactivityTimeout);
-        document.addEventListener("keydown", resetInactivityTimeout);
+    // Menambahkan event listener untuk mendeteksi aktivitas
+    document.addEventListener("mousemove", resetInactivityTimeout);
+    document.addEventListener("keydown", resetInactivityTimeout);
     </script>
 </body>
 

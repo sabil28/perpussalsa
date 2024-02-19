@@ -58,7 +58,8 @@ if (!isset($_SESSION["login_type"])) {
                 <!-- START TOP-RIGHT TOOLBAR-->
                 <ul class="nav navbar-toolbar">
                     <li class="dropdown dropdown-notification">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span class="notify-signal"></span></i></a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span
+                                    class="notify-signal"></span></i></a>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
                             <li class="dropdown-menu-header">
                                 <div>
@@ -76,7 +77,8 @@ if (!isset($_SESSION["login_type"])) {
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <img src="./assets/img/admin-avatar.png" />
-                            <span></span><?php echo $_SESSION['nama_admin']; ?><i class="fa fa-angle-down m-l-5"></i></a>
+                            <span></span><?php echo $_SESSION['nama_admin']; ?><i
+                                class="fa fa-angle-down m-l-5"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="keluar.php"><i class="fa fa-power-off"></i>Logout</a>
                         </ul>
@@ -104,10 +106,12 @@ if (!isset($_SESSION["login_type"])) {
                 <div class="ibox">
                     <div class="ibox-head">
                         <div class="ibox-title">Data Admin</div>
-                        <a class="btn btn-sm btn-primary" href="" data-toggle="modal" data-target="#formModal"><i class="fa fa-plus"></i> Tambah Data</a>
+                        <a class="btn btn-sm btn-primary" href="" data-toggle="modal" data-target="#formModal"><i
+                                class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                     <div class="ibox-body">
-                        <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
+                        <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0"
+                            width="100%">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -139,8 +143,12 @@ if (!isset($_SESSION["login_type"])) {
                                         <img src="<?php echo $row['foto']; ?>" width="60px" height="60px">
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-warning" href="" data-toggle="modal" data-target="#formeditModal<?php echo $row['id_admin']; ?>"><i class="fa fa-cog"></i></a>
-                                        <a class="btn btn-sm btn-danger" href="hapus_admin.php?idadmin=<?php echo $row['id_admin']; ?>"><i class="fa fa-trash"></i></a>
+                                        <a class="btn btn-sm btn-warning" href="" data-toggle="modal"
+                                            data-target="#formeditModal<?php echo $row['id_admin']; ?>"><i
+                                                class="fa fa-cog"></i></a>
+                                        <a class="btn btn-sm btn-danger"
+                                            href="hapus_admin.php?idadmin=<?php echo $row['id_admin']; ?>"><i
+                                                class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 <?php } ?>
@@ -151,7 +159,8 @@ if (!isset($_SESSION["login_type"])) {
             </div>
 
             <!-- Modal Tambah-->
-            <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -162,50 +171,52 @@ if (!isset($_SESSION["login_type"])) {
                         </div>
                         <div class="modal-body">
                             <form method="POST" action="proses_admin.php" enctype="multipart/form-data">
-                            <div class="row">
-                                <!-- Kolom kiri -->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input type="text" class="form-control" id="username" name="username">
+                                <div class="row">
+                                    <!-- Kolom kiri -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" id="username" name="username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" name="password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nama-lengkap">Nama Lengkap</label>
+                                            <input type="text" class="form-control" id="nama-lengkap" name="nama">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="alamat">Alamat</label>
+                                            <textarea class="form-control" id="alamat" name="alamat"
+                                                rows="3"></textarea>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password" name="password">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nama-lengkap">Nama Lengkap</label>
-                                        <input type="text" class="form-control" id="nama-lengkap" name="nama">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="alamat">Alamat</label>
-                                        <textarea class="form-control" id="alamat" name="alamat" rows="3"></textarea>
+                                    <!-- Kolom kanan -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nomor-hp">Nomor HP</label>
+                                            <input type="text" class="form-control" id="nomor-hp" name="nomor">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="hak-ases">Hak Akses</label>
+                                            <select class="form-control" id="hak-ases" name="hakakses">
+                                                <option selected disabled>Pilih Hak Akses</option>
+                                                <option value="admin">Admin</option>
+                                                <option value="user">User</option>
+                                                <option value="anggota">Anggota</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="upload-foto">Upload Foto</label>
+                                            <input type="file" class="form-control" id="upload-foto" name="foto">
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- Kolom kanan -->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="nomor-hp">Nomor HP</label>
-                                        <input type="text" class="form-control" id="nomor-hp" name="nomor">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="hak-ases">Hak Akses</label>
-                                        <select class="form-control" id="hak-ases" name="hakakses">
-                                            <option selected disabled>Pilih Hak Akses</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="user">User</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="upload-foto">Upload Foto</label>
-                                        <input type="file" class="form-control" id="upload-foto" name="foto">
-                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
                             </form>
                         </div>
                     </div>
@@ -217,7 +228,8 @@ if (!isset($_SESSION["login_type"])) {
             $a = mysqli_query($koneksi, "SELECT * FROM tb_admin");
             while ($rowa = mysqli_fetch_assoc($a)){
             ?>
-            <div class="modal fade" id="formeditModal<?php echo $rowa['id_admin']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="formeditModal<?php echo $rowa['id_admin']; ?>" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -228,53 +240,64 @@ if (!isset($_SESSION["login_type"])) {
                         </div>
                         <div class="modal-body">
                             <form method="POST" action="update_admin.php" enctype="multipart/form-data">
-                            <input type="hidden" name="id" value="<?php echo $rowa['id_admin']; ?>">    
-                            <div class="row">
-                                <!-- Kolom kiri -->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input type="text" class="form-control" id="username" name="username" value="<?php echo $rowa['username']; ?>">
+                                <input type="hidden" name="id" value="<?php echo $rowa['id_admin']; ?>">
+                                <div class="row">
+                                    <!-- Kolom kiri -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" id="username" name="username"
+                                                value="<?php echo $rowa['username']; ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" name="password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nama-lengkap">Nama Lengkap</label>
+                                            <input type="text" class="form-control" id="nama-lengkap" name="nama"
+                                                value="<?php echo $rowa['nama_lengkap']; ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="alamat">Alamat</label>
+                                            <textarea class="form-control" id="alamat" name="alamat"
+                                                rows="3"><?php echo $rowa['alamat']; ?></textarea>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password" name="password">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nama-lengkap">Nama Lengkap</label>
-                                        <input type="text" class="form-control" id="nama-lengkap" name="nama" value="<?php echo $rowa['nama_lengkap']; ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="alamat">Alamat</label>
-                                        <textarea class="form-control" id="alamat" name="alamat" rows="3"><?php echo $rowa['alamat']; ?></textarea>
+                                    <!-- Kolom kanan -->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nomor-hp">Nomor HP</label>
+                                            <input type="text" class="form-control" id="nomor-hp" name="nomor"
+                                                value="<?php echo $rowa['nomor_hp']; ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="hak-ases">Hak Akses</label>
+                                            <select class="form-control" id="hak-ases" name="hakakses">
+                                                <option selected disabled>Pilih Hak Akses</option>
+                                                <option
+                                                    <?php if($rowa['hak_akses'] == "admin"){echo "selected='selected'";} ?>
+                                                    value="admin">Admin</option>
+                                                <option
+                                                    <?php if($rowa['hak_akses'] == "user"){echo "selected='selected'";} ?>
+                                                    value="user">User</option>
+                                                <option
+                                                    <?php if($rowa['hak_akses'] == "anggota"){echo "selected='selected'";} ?>
+                                                    value="anggota">Anggota</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="upload-foto">Upload Foto</label>
+                                            <input type="file" class="form-control" id="upload-foto" name="foto">
+                                            <br>
+                                            <img src="<?php echo $rowa['foto']; ?>" width="60px" height="60px">
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- Kolom kanan -->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="nomor-hp">Nomor HP</label>
-                                        <input type="text" class="form-control" id="nomor-hp" name="nomor" value="<?php echo $rowa['nomor_hp']; ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="hak-ases">Hak Akses</label>
-                                        <select class="form-control" id="hak-ases" name="hakakses">
-                                            <option selected disabled>Pilih Hak Akses</option>
-                                            <option <?php if($rowa['hak_akses'] == "admin"){echo "selected='selected'";} ?> value="admin">Admin</option>
-                                            <option <?php if($rowa['hak_akses'] == "user"){echo "selected='selected'";} ?> value="user">User</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="upload-foto">Upload Foto</label>
-                                        <input type="file" class="form-control" id="upload-foto" name="foto">
-                                        <br>
-                                        <img src="<?php echo $rowa['foto']; ?>" width="60px" height="60px">
-                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                            </div>
                             </form>
                         </div>
                     </div>
@@ -284,15 +307,18 @@ if (!isset($_SESSION["login_type"])) {
 
             <!-- END PAGE CONTENT-->
             <footer class="page-footer">
-                <div class="font-13">2023 © <b>AANDANU</b> - All rights reserved.</div>
-                <a class="px-4" href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589" target="_blank">BUY PREMIUM</a>
+                <div class="font-13">2024 © <b>SALSABILA</b> - All rights reserved.</div>
+                <a class="px-4"
+                    href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589"
+                    target="_blank">BUY PREMIUM</a>
                 <div class="to-top"><i class="fa fa-angle-double-up"></i></div>
             </footer>
         </div>
     </div>
     <!-- BEGIN THEME CONFIG PANEL-->
     <div class="theme-config">
-        <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i class="ti-close theme-config-close"></i></div>
+        <div class="theme-config-toggle"><i class="fa fa-cog theme-config-show"></i><i
+                class="ti-close theme-config-close"></i></div>
         <div class="theme-config-box">
             <div class="text-center font-18 m-b-20">SETTINGS</div>
             <div class="font-strong">LAYOUT OPTIONS</div>
@@ -438,35 +464,35 @@ if (!isset($_SESSION["login_type"])) {
     <script src="assets/js/app.min.js" type="text/javascript"></script>
     <!-- PAGE LEVEL SCRIPTS-->
     <script type="text/javascript">
-        $(function() {
-            $('#example-table').DataTable({
-                pageLength: 10,
-                //"ajax": './assets/demo/data/table_data.json',
-                /*"columns": [
-                    { "data": "name" },
-                    { "data": "office" },
-                    { "data": "extn" },
-                    { "data": "start_date" },
-                    { "data": "salary" }
-                ]*/
-            });
-        })
+    $(function() {
+        $('#example-table').DataTable({
+            pageLength: 10,
+            //"ajax": './assets/demo/data/table_data.json',
+            /*"columns": [
+                { "data": "name" },
+                { "data": "office" },
+                { "data": "extn" },
+                { "data": "start_date" },
+                { "data": "salary" }
+            ]*/
+        });
+    })
     </script>
 
     <script>
-        var inactivityTimeout; // Timeout untuk aktivitas
+    var inactivityTimeout; // Timeout untuk aktivitas
 
-        // Fungsi untuk mereset timeout
-        function resetInactivityTimeout() {
-            clearTimeout(inactivityTimeout);
-            inactivityTimeout = setTimeout(function() {
-                window.location.href = "lockscreen.php";
-            }, 200000); // Mengarahkan ke lockscreen.php setelah 10 menit (600000 ms) tidak ada aktivitas
-        }
+    // Fungsi untuk mereset timeout
+    function resetInactivityTimeout() {
+        clearTimeout(inactivityTimeout);
+        inactivityTimeout = setTimeout(function() {
+            window.location.href = "lockscreen.php";
+        }, 200000); // Mengarahkan ke lockscreen.php setelah 10 menit (600000 ms) tidak ada aktivitas
+    }
 
-        // Menambahkan event listener untuk mendeteksi aktivitas
-        document.addEventListener("mousemove", resetInactivityTimeout);
-        document.addEventListener("keydown", resetInactivityTimeout);
+    // Menambahkan event listener untuk mendeteksi aktivitas
+    document.addEventListener("mousemove", resetInactivityTimeout);
+    document.addEventListener("keydown", resetInactivityTimeout);
     </script>
 </body>
 
