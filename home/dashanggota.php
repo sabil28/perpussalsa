@@ -1,14 +1,6 @@
 <?php
 session_start();
 include 'koneksi.php';
-$hak_akses = $_SESSION['hak_akses'];
-if( $_SESSION['hak_akses'] == 'anggota') {
-    // Menambahkan kelas hide jika hak akses adalah 'anggota'
-    $hide_class = 'hide';
-} else {
-    // Jika bukan 'anggota', tidak perlu menambahkan kelas hide
-    $hide_class = '';
-}
 if (!isset($_SESSION["login_type"])) {
     echo '<script language="javascript" type="text/javascript">
         alert("Anda Tidak Berhak Memasuki Halaman Ini.!");</script>';
@@ -71,24 +63,15 @@ $id = $_SESSION['id_admin'];
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span
                                     class="notify-signal"></span></i></a>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
-                            <li class="dropdown-menu-header">
-                                <div>
-                                    <span><strong>5 New</strong> Notifications</span>
-                                </div>
-                            </li>
-                            <li class="list-group list-group-divider scroller" data-height="240px" data-color="#71808f">
-                                <div>
-                                    <?php include 'notif.php'; ?>
-                                </div>
-                            </li>
+
                         </ul>
                     </li>
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <?php 
                             $data = "SELECT * FROM tb_admin WHERE id_admin=$id";
-                            $result = mysqli_query($koneksi,$data);
-                            $row = mysqli_fetch_assoc($result);
+                            $result = mysql_query($koneksi,$data);
+                            $row = mysql_fetch_assoc($result);
                             ?>
                             <img src="<?php echo $row['foto']; ?>" />
                             <span></span><?php echo $_SESSION['nama_admin']; ?><i

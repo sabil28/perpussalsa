@@ -49,7 +49,7 @@
                     </li>
                     <li>
                         <a href="admin.php"><i class="sidebar-item-icon fa fa-user"></i>
-                            <span class="nav-label">Admin</span></a>
+                            <span class="nav-label">Pengguna</span></a>
                     </li>
                     <li class="heading">Lainnya</li>
                     <li>
@@ -136,10 +136,10 @@
                         <a href="peminjaman.php"><i class="sidebar-item-icon fa fa-sticky-note"></i>
                             <span class="nav-label">Peminjaman Buku</span></a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="riwayat.php"><i class="sidebar-item-icon fa fa-history"></i>
                             <span class="nav-label">Riwayat</span></a>
-                    </li>
+                    </li> -->
                     <!-- <li class="heading">Lainnya</li>
                     <li>
                         <a href="javascript:;"><i class="sidebar-item-icon fa fa-file"></i>

@@ -2,6 +2,11 @@
 session_start();
 include 'koneksi.php';
 $hak_akses = $_SESSION['hak_akses'];
+if ($_SESSION['hak_akses'] === 'anggota') {
+    $style = 'style="display:none;"'; // Sembunyikan tombol jika hak akses adalah 'anggota'
+} else {
+    $style = ''; // Tampilkan tombol untuk hak akses selain 'anggota'
+}
 if (!isset($_SESSION["login_type"])) {
     echo '<script language="javascript" type="text/javascript">
         alert("Anda Tidak Berhak Memasuki Halaman Ini.!");</script>';
@@ -107,8 +112,9 @@ if (!isset($_SESSION["login_type"])) {
                 <div class="ibox">
                     <div class="ibox-head">
                         <div class="ibox-title">Data Peminjaman</div>
-                        <a class="btn btn-sm btn-primary" href="" data-toggle="modal" data-target="#pinjamModal"><i
-                                class="fa fa-plus"></i> Tambah Data</a>
+                        <!-- Tombol Tambah Data -->
+                        <a class="btn btn-sm btn-primary" href="" data-toggle="modal" data-target="#pinjamModal"
+                            <?php echo $style; ?>><i class="fa fa-plus"></i> Tambah Data</a>
                     </div>
                     <div class="ibox-body">
                         <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0"
@@ -122,7 +128,7 @@ if (!isset($_SESSION["login_type"])) {
                                     <th>Tgl. Pengembalian Rencana</th>
                                     <th>Tgl. Pengembalian Aktual</th>
                                     <th>Status Peminjaman</th>
-                                    <th>Action</th>
+                                    <th <?php echo $style; ?>>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -176,20 +182,29 @@ if (!isset($_SESSION["login_type"])) {
                                         <span class="badge badge-danger">Telat</span>
                                         <?php } ?>
                                     </td>
-                                    <td style="text-align: center;">
+                                    <td style="text-align: center;" <?php echo $style; ?>>
+                                        <?php if ($_SESSION['hak_akses'] !== 'anggota') : ?>
+                                        <!-- Tautan Edit -->
                                         <a class="btn btn-sm btn-warning" href="" data-toggle="modal"
                                             data-toggle="modal"
                                             data-target="#editModal<?php echo $row['id_peminjaman']; ?>"><i
                                                 class="fa fa-cog"></i></a><br><br>
 
+                                        <!-- Tautan Cetak Kwitansi -->
                                         <a class="btn btn-sm btn-primary"
                                             href="cetak_kwintasi.php?id=<?php echo $row['id_peminjaman']; ?>"
                                             target="_blank"><i class="fa fa-print"></i></a><br><br>
-
+                                        <!-- Tautan Status Modal -->
                                         <a class="btn btn-sm <?php echo $btn; ?>" href="" data-toggle="modal"
                                             data-target="#statusModal<?php echo $row['id_peminjaman']; ?>"><i
                                                 class="<?php echo $icon; ?>"></i></a>
+                                        <?php endif; ?>
+
+
                                     </td>
+
+
+
                                 </tr>
                                 <?php } ?>
                             </tbody>
@@ -497,10 +512,8 @@ if (!isset($_SESSION["login_type"])) {
 
             <!-- END PAGE CONTENT-->
             <footer class="page-footer">
-                <div class="font-13">2023 © <b>AANDANU</b> - All rights reserved.</div>
-                <a class="px-4"
-                    href="http://themeforest.net/item/adminca-responsive-bootstrap-4-3-angular-4-admin-dashboard-template/20912589"
-                    target="_blank">BUY PREMIUM</a>
+                <div class="font-13">2023 © <b>SALSABILA</b> - All rights reserved.</div>
+
                 <div class="to-top"><i class="fa fa-angle-double-up"></i></div>
             </footer>
         </div>

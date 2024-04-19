@@ -1,7 +1,7 @@
  <?php
 // Mulai session 
 
-// Koneksi ke database (sesuaikan dengan pengaturan database Anda)
+// Koneksi ke database (sesuaikan dengan pengaturan database a)
 session_start();
 require_once("home/koneksi.php");
 

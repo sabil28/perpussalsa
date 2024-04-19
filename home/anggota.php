@@ -273,10 +273,10 @@ if (!isset($_SESSION["login_type"])) {
                                     <input type="text" class="form-control" id="username" name="username"
                                         value="<?php echo $rowA['username']; ?>">
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control" id="password" name="password">
-                                </div>
+                                </div> -->
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                     <button type="submit" class="btn btn-success">Update</button>
